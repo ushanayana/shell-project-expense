@@ -26,3 +26,12 @@ then
 else
     echo "You are super user."
 fi
+
+dnf install mysql-server -y &>>LOGFILE
+VALIDATE $? "installing mysql-server"
+
+systemctl enable mysqld &>>LOGFILE
+VALIDATE $? "enabling mysqld"
+
+systemctl start mysqld &>>LOGFILE 
+VALIDATE $? "start mysqld"
